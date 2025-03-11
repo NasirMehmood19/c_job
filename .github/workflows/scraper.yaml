@@ -1,0 +1,46 @@
+name: Run Scraper Every 2 Hours
+
+on:
+  schedule:
+    - cron: "0 */2 * * *"  # Runs every 2 hours
+  workflow_dispatch:  # Allows manual run
+
+jobs:
+  run-scraper:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  # Ensure your repo has this file
+
+      - name: Setup Chrome for Selenium
+        run: |
+          sudo apt update
+          sudo apt install -y chromium-chromedriver
+          echo "CHROME_BIN=$(which chromium-browser)" >> $GITHUB_ENV
+          echo "CHROMEDRIVER_BIN=$(which chromedriver)" >> $GITHUB_ENV
+
+      - name: Decode and Load Cookies (Optional)
+        env:
+          COOKIES_BASE64: ${{ secrets.INSTA_COOKIES }}
+        run: |
+          echo "$COOKIES_BASE64" | base64 --decode > instagram_cookies.pkl
+
+      - name: Run Scraper
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+        python combine (1).py
+        python combine.py
+        python facebook_scrapping.py
+        python get_timestamp_from_db.py
+        python instagram_scrapping.py
