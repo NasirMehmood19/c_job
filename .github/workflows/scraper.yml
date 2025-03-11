@@ -25,7 +25,7 @@ jobs:
       - name: Setup Chrome for Selenium
         run: |
           sudo apt update
-          sudo apt install -y chromium-chromedriver
+          sudo apt install -y chromium-browser chromium-chromedriver
           echo "CHROME_BIN=$(which chromium-browser)" >> $GITHUB_ENV
           echo "CHROMEDRIVER_BIN=$(which chromedriver)" >> $GITHUB_ENV
 
@@ -38,9 +38,9 @@ jobs:
       - name: Run Scraper
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          run: |
-            python combine_1.py
-            python combine.py
-            python facebook_scrapping.py
-            python get_timestamp_from_db.py
-            python instagram_scrapping.py
+        run: |
+          python combine_1.py
+          python combine.py
+          python facebook_scrapping.py
+          python get_timestamp_from_db.py
+          python instagram_scrapping.py
