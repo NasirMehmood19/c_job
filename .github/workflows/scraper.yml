@@ -38,9 +38,9 @@ jobs:
       - name: Run Scraper
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: |
-        python combine_1.py
-        python combine.py
-        python facebook_scrapping.py
-        python get_timestamp_from_db.py
-        python instagram_scrapping.py
+          run: |
+            python combine_1.py
+            python combine.py
+            python facebook_scrapping.py
+            python get_timestamp_from_db.py
+            python instagram_scrapping.py
