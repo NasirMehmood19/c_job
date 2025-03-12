@@ -126,12 +126,9 @@ jobs:
           chromium-browser --version
           chromedriver --version
 
-      - name: Decode and Load Cookies
-        env:
-          COOKIES_BASE64: ${{ secrets.INSTA_COOKIES }}
-        run: |
-          echo "$COOKIES_BASE64" | base64 --decode > instagram_cookies.pkl
-          ls -lah instagram_cookies.pkl  # Verify file exists
+      - name: Load Cookies from Repo
+        run: cp cookies/instagram_cookies.pkl instagram_cookies.pkl
+
 
       - name: Set DATABASE_URL Manually
         run: echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> $GITHUB_ENV
