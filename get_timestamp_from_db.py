@@ -23,10 +23,13 @@ options.binary_location = os.getenv("CHROME_BIN", "/usr/bin/chromium-browser")  
 # options.add_argument("--disable-gpu")
 # options.add_argument("--window-size=1920,1080")
 
-options.add_argument("--headless=new")  # New headless mode
-options.add_argument("--no-sandbox")  # Required for running as root
-options.add_argument("--disable-dev-shm-usage")  # Fixes memory issues
-options.add_argument("--disable-blink-features=AutomationControlled")  # Avoid detection
+options.add_argument("--headless=new")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
+options.add_argument("--disable-gpu")
+options.add_argument("--window-size=1920,1080")
+options.add_argument("--user-data-dir=/tmp/chrome_get_timestamp")  # Unique session
+
 
 service = Service(os.getenv("CHROMEDRIVER_BIN", "/usr/bin/chromedriver"))  # Use correct Chromedriver path
 driver = webdriver.Chrome(service=service, options=options)
