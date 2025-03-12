@@ -1,7 +1,8 @@
 selenium
 psycopg2-binary
+webdriver-manager
+beautifulsoup4
 feedparser
 python-dateutil
+html5lib
 requests
-beautifulsoup4
-GNews
