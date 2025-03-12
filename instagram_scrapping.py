@@ -14,10 +14,13 @@ DATABASE_URL = "postgresql://instaxrss_user:QGBb5ALqiBraZtjt1c1zoifa4Kf4G1Tu@dpg
 
 # Configure Selenium WebDriver options for Instagram (headless mode)
 insta_options = Options()
+chrome_options.binary_location = "/usr/bin/google-chrome"
 insta_options.add_argument("--headless=new")
 insta_options.add_argument("--disable-gpu")
 insta_options.add_argument("--window-size=375,812")
 insta_options.add_argument("--disable-blink-features=AutomationControlled")
+service = Service("/usr/bin/chromedriver")  # Set Chromedriver path
+driver = webdriver.Chrome(service=service, options=chrome_options)
 insta_options.add_argument(
     "user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 15_5 like Mac OS X) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Mobile Safari/537.36"
@@ -76,6 +79,8 @@ def get_latest_instagram_post(page_url):
     driver = webdriver.Chrome(options=insta_options)
     driver.get("https://www.instagram.com/")
     time.sleep(5)
+
+
 
     load_cookies(driver, "instagram_cookies.pkl")
     driver.refresh()
