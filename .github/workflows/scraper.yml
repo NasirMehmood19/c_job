@@ -69,12 +69,20 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # - name: Install Chrome & Chromedriver
+      #   run: |
+      #     sudo apt update
+      #     sudo apt install -y google-chrome-stable chromium-chromedriver
+      #     echo "CHROME_BIN=$(which google-chrome)" >> $GITHUB_ENV
+      #     echo "CHROMEDRIVER_BIN=$(which chromedriver)" >> $GITHUB_ENV
+
       - name: Install Chrome & Chromedriver
         run: |
           sudo apt update
-          sudo apt install -y google-chrome-stable chromium-chromedriver
-          echo "CHROME_BIN=$(which google-chrome)" >> $GITHUB_ENV
-          echo "CHROMEDRIVER_BIN=$(which chromedriver)" >> $GITHUB_ENV
+          sudo apt install -y chromium-browser chromium-chromedriver
+          echo "CHROME_BIN=/usr/bin/chromium-browser" >> $GITHUB_ENV
+          echo "CHROMEDRIVER_BIN=/usr/bin/chromedriver" >> $GITHUB_ENV
+
 
       - name: Decode and Load Cookies
         env:
