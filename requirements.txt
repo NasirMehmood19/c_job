@@ -4,3 +4,4 @@ feedparser
 python-dateutil
 requests
 beautifulsoup4
+GNews
