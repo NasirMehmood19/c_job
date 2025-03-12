@@ -4,11 +4,13 @@ import psycopg2
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from datetime import datetime
 from datetime import timezone, timedelta
+import os
 
 # PostgreSQL Connection URL (Render external DB)
-DATABASE_URL = "postgresql://instaxrss_user:QGBb5ALqiBraZtjt1c1zoifa4Kf4G1Tu@dpg-cv7sqcqj1k6c739htp00-a.oregon-postgres.render.com/instaxrss"
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 # --- Instagram Scraper (Headless) ---
 
@@ -119,7 +121,7 @@ def get_latest_instagram_post(page_url):
     return max(valid_posts, key=lambda p: p["timestamp"]) if valid_posts else None
 
 def scrape_instagram():
-    conn = psycopg2.connect(DATABASE_URL)
+    conn = psycopg2.connect(DATABASE_URL, sslmode="require")
     cursor = conn.cursor()
     create_table_query = """
     CREATE TABLE IF NOT EXISTS instagram_links (
