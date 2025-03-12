@@ -10,7 +10,7 @@ from datetime import timezone, timedelta
 import os
 
 # PostgreSQL Connection URL (Render external DB)
-DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_URL = "postgresql://instaxrss_user:QGBb5ALqiBraZtjt1c1zoifa4Kf4G1Tu@dpg-cv7sqcqj1k6c739htp00-a.oregon-postgres.render.com/instaxrss"
 
 # --- Instagram Scraper (Headless) ---
 
