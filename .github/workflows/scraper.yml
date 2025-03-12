@@ -46,6 +46,51 @@
 #           python get_timestamp_from_db.py
 
 
+# name: Run Scraper Every 2 Hours
+
+# on:
+#   schedule:
+#     - cron: "0 */2 * * *"  # Runs every 2 hours
+#   workflow_dispatch:  # Allows manual run
+
+# jobs:
+#   run-scraper:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+
+#       - name: Set up Python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: "3.9"
+
+#       - name: Install dependencies
+#         run: pip install -r requirements.txt
+
+
+#       - name: Install Chrome & Chromedriver
+#         run: |
+#           sudo apt update
+#           sudo apt install -y chromium-browser chromium-chromedriver
+#           echo "CHROME_BIN=/usr/bin/chromium-browser" >> $GITHUB_ENV
+#           echo "CHROMEDRIVER_BIN=/usr/bin/chromedriver" >> $GITHUB_ENV
+
+
+#       - name: Decode and Load Cookies
+#         env:
+#           COOKIES_BASE64: ${{ secrets.INSTA_COOKIES }}
+#         run: echo "$COOKIES_BASE64" | base64 --decode > instagram_cookies.pkl
+
+#       - name: Run Scraper
+#         env:
+#           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+#         run:
+#           python instagram_scrapping.py
+
+
+
 name: Run Scraper Every 2 Hours
 
 on:
@@ -69,28 +114,29 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # - name: Install Chrome & Chromedriver
-      #   run: |
-      #     sudo apt update
-      #     sudo apt install -y google-chrome-stable chromium-chromedriver
-      #     echo "CHROME_BIN=$(which google-chrome)" >> $GITHUB_ENV
-      #     echo "CHROMEDRIVER_BIN=$(which chromedriver)" >> $GITHUB_ENV
-
       - name: Install Chrome & Chromedriver
         run: |
           sudo apt update
           sudo apt install -y chromium-browser chromium-chromedriver
-          echo "CHROME_BIN=/usr/bin/chromium-browser" >> $GITHUB_ENV
-          echo "CHROMEDRIVER_BIN=/usr/bin/chromedriver" >> $GITHUB_ENV
+          echo "CHROME_BIN=$(which chromium-browser)" >> $GITHUB_ENV
+          echo "CHROMEDRIVER_BIN=$(which chromedriver)" >> $GITHUB_ENV
 
+      - name: Verify Chrome & Chromedriver Installation
+        run: |
+          chromium-browser --version
+          chromedriver --version
 
       - name: Decode and Load Cookies
         env:
           COOKIES_BASE64: ${{ secrets.INSTA_COOKIES }}
-        run: echo "$COOKIES_BASE64" | base64 --decode > instagram_cookies.pkl
+        run: |
+          echo "$COOKIES_BASE64" | base64 --decode > instagram_cookies.pkl
+          ls -lah instagram_cookies.pkl  # Verify file exists
+
+      - name: Set DATABASE_URL Manually
+        run: echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> $GITHUB_ENV
 
       - name: Run Scraper
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run:
-          python instagram_scrapping.py
+          DATABASE_URL: ${{ env.DATABASE_URL }}
+        run: python instagram_scrapping.py
