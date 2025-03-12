@@ -16,9 +16,9 @@ DATABASE_URL = "postgresql://instaxrss_user:QGBb5ALqiBraZtjt1c1zoifa4Kf4G1Tu@dpg
 
 # --- Instagram Scraper (Headless) ---
 
-# Configure Selenium WebDriver options for Instagram (headless mode)
 insta_options = Options()
-insta_options.add_argument("--headless=new")  # No browser window appears
+insta_options.binary_location = os.getenv("CHROME_BIN", "/usr/bin/chromium-browser")  # Use Chromium
+insta_options.add_argument("--headless=new")
 insta_options.add_argument("--disable-gpu")
 insta_options.add_argument("--window-size=375,812")
 insta_options.add_argument("--disable-blink-features=AutomationControlled")
@@ -26,6 +26,10 @@ insta_options.add_argument(
     "user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 15_5 like Mac OS X) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Mobile Safari/537.36"
 )
+
+# Setup ChromeDriver service
+service = Service(os.getenv("CHROMEDRIVER_BIN", "/usr/bin/chromedriver"))  # Use correct Chromedriver path
+driver = webdriver.Chrome(service=service, options=insta_options)
 
 #  --- Facebook Scraper ---
 facebook_pages = [
