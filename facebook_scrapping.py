@@ -101,8 +101,7 @@ def fetch_all_posts():
     print(f"✅ Stored/Updated the latest post in the database.")
 
 if __name__ == "__main__":
-    while True:
-       
-        fetch_all_posts()
-        print("Waiting 20 minutes before next scrape...")
-        time.sleep(60 *20)
+    # while True:
+    fetch_all_posts()
+        # print("Waiting 20 minutes before next scrape...")
+        # time.sleep(60 *20)
