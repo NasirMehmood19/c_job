@@ -15,18 +15,18 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 # --- Instagram Scraper (Headless) ---
 
 # Configure Selenium WebDriver options for Instagram (headless mode)
-insta_options = Options()
-insta_options.binary_location = "/usr/bin/google-chrome"
-insta_options.add_argument("--headless=new")
-insta_options.add_argument("--disable-gpu")
-insta_options.add_argument("--window-size=375,812")
-insta_options.add_argument("--disable-blink-features=AutomationControlled")
-insta_options.add_argument(
+chrome_options = Options()
+chrome_options.binary_location = "/usr/bin/google-chrome"
+chrome_options.add_argument("--headless=new")
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--window-size=375,812")
+chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+chrome_options.add_argument(
     "user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 15_5 like Mac OS X) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Mobile Safari/537.36"
 )
 service = Service("/usr/bin/chromedriver")  # Set Chromedriver path
-driver = webdriver.Chrome(service=service, options=insta_options)
+driver = webdriver.Chrome(service=service, options=chrome_options)
 
 # Dictionary of Instagram pages to scrape
 INSTAGRAM_PAGES = {
