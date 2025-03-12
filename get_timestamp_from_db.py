@@ -17,9 +17,13 @@ DATABASE_URL = "postgresql://instaxrss_user:QGBb5ALqiBraZtjt1c1zoifa4Kf4G1Tu@dpg
 
 # Selenium WebDriver Setup (Headless Mode)
 options = Options()
+options.binary_location = os.getenv("CHROME_BIN", "/usr/bin/chromium-browser")  # Use Chromium
 options.add_argument("--headless")
 options.add_argument("--disable-gpu")
 options.add_argument("--window-size=1920,1080")
+
+service = Service(os.getenv("CHROMEDRIVER_BIN", "/usr/bin/chromedriver"))  # Use correct Chromedriver path
+driver = webdriver.Chrome(service=service, options=options)
 
 def create_table():
     """Create fb_links table if it doesn't exist."""
