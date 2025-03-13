@@ -60,7 +60,7 @@ def get_facebook_links():
 
 def start_driver():
     """Start and return a fresh Selenium WebDriver instance."""
-    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=insta_options)
 
 def extract_page_details(driver, link):
     """Extract timestamp and page name from a Facebook post URL."""
