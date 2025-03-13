@@ -156,7 +156,7 @@ def main():
     driver.quit()  # Ensure driver is closed after processing all links
 
 if __name__ == "__main__":
-        main()
+    main()
     # while True:
         
         # print("🔄 Restarting process in 1 hour...")
