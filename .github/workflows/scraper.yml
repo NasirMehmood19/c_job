@@ -137,11 +137,10 @@ jobs:
         env:
           DATABASE_URL: ${{ env.DATABASE_URL }}
         run: |
-          python get_timestamp_from_db.py
-          # python combine.py
-          # python combine_1.py
-          # python instagram_scrapping.py
-          # python facebook_scrapping.py
+          python combine.py
+          python combine_1.py
+          python instagram_scrapping.py
+          python facebook_scrapping.py
           
           
         
