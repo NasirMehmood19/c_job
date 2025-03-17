@@ -39,7 +39,7 @@ INSTAGRAM_PAGES = {
     "Justin Bieber": "https://www.instagram.com/justinbieber/",
     "Hailey Bieber": "https://www.instagram.com/haileybieber/",
     "Selena Gomez": "https://www.instagram.com/selenagomez/",
-    "Henry Cavill": "https://www.instagram.com/HenryCavill/",
+    "Henry Cavill": "https://www.instagram.com/henrycavill/",
     "Emma Roberts": "https://www.instagram.com/emmaroberts/",
     "Reese Witherspoon": "https://www.instagram.com/reesewitherspoon/",
     "Shakira": "https://www.instagram.com/shakira/",
@@ -52,22 +52,21 @@ INSTAGRAM_PAGES = {
     "Gigi Hadid": "https://www.instagram.com/gigihadid/",
     "Zayn Malik": "https://www.instagram.com/zayn/",
     "Tom Cruise": "https://www.instagram.com/tomcruise/",
-    "Barry Keoghan": "https://www.instagram.com/barrykeoghansource/",
     "Meghan Markle": "https://www.instagram.com/meghan/",
     "Kendall Jenner": "https://www.instagram.com/kendalljenner/",
     "Kris Jenner": "https://www.instagram.com/krisjenner/",
     "Khloé Kardashian": "https://www.instagram.com/khloekardashian/",
     "Kourtney Kardashian": "https://www.instagram.com/kourtneykardash/",
-    "Jeremy Renner": "https://www.instagram.com/jeremyrenner/?hl=en",
+    "Jeremy Renner": "https://www.instagram.com/jeremyrenner/",
     "Chris Hemsworth": "https://www.instagram.com/chrishemsworth/",
     "Ed Sheeran": "https://www.instagram.com/teddysphotos/",
-    "Sydney Sweeney": "https://www.instagram.com/sydney_sweeney/",
     "Anne Hathaway": "https://www.instagram.com/annehathaway/",
     "Jennifer Lopez": "https://www.instagram.com/jlo/",
-    "Jennifer Garner": "https://www.instagram.com/jennifer.garner/",
+    "Jennifer Garner": "https://www.instagram.com/jennifer.garner/?hl=en",
     "Jennifer Aniston": "https://www.instagram.com/jenniferaniston/",
-    "Jennifer Lawrence": "https://www.instagram.com/1jnnf/"
+    "Jennifer Lawrence": "https://www.instagram.com/jenniferlawrence_/",
 }
+
 
 # --- Cookie Loader ---
 def load_cookies(driver, file_path):
