@@ -178,7 +178,18 @@ facebook_pages = [
     {"name": "Jennifer Lopez", "url": "https://www.facebook.com/JenniferLopez/"},
     {"name": "Jennifer Garner", "url": "https://www.facebook.com/JenniferGarner/"},
     {"name": "Jennifer Aniston", "url": "https://www.facebook.com/JenniferAniston/"},
-    {"name": "Jennifer Lawrence", "url": "https://www.facebook.com/JenniferLawrence/"}
+    {"name": "Jennifer Lawrence", "url": "https://www.facebook.com/JenniferLawrence/"},
+    {"name": "The Royal Family", "url": "https://www.facebook.com/TheBritishMonarchy/"},
+    {"name": "Cardi B", "url": "https://www.facebook.com/cardib/"},
+    {"name": "Soompi", "url": "https://www.facebook.com/Soompi/"},
+    {"name": "Katy Perry", "url": "https://www.facebook.com/KatyPerry/"},
+    {"name": "Paris Hilton", "url": "https://www.facebook.com/ParisHilton/"},
+    {"name": "Zendaya", "url": "https://www.facebook.com/Zendaya/"},
+    {"name": "Jenna Ortega", "url": "https://www.facebook.com/Jenna0rtega/"},
+    {"name": "Netflix", "url": "https://www.facebook.com/Netflix/"},
+    {"name": "Tom Hanks", "url": "https://www.facebook.com/TomHanks/"},
+    {"name": "Vin Diesel", "url": "https://www.facebook.com/VinDiesel/"},
+    {"name": "Robert Downey Jr.", "url": "https://www.facebook.com/RobertDowneyJr/"}
 ]
 
 
@@ -209,7 +220,7 @@ def store_facebook_posts(posts):
     cursor = conn.cursor()
     for post in posts:
         cursor.execute("INSERT INTO facebook_links (page_name, link) VALUES (%s, %s) " 
-                       "ON CONFLICT (link) DO NOTHING",
+                       "ON CONFLICT (page_name) DO UPDATE SET link = EXCLUDED.link",
                        (post["page_name"], post["link"]))
     conn.commit()
     cursor.close()
