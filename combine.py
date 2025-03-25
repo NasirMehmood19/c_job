@@ -1,57 +1,57 @@
-import psycopg2
-import os
-from gnews import GNews
+# import psycopg2
+# import os
+# from gnews import GNews
 
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://save_links_user:9WO8M1bIXq1nd4SSzW3uyTeaFzjmBC8M@dpg-curg0123esus73dnsv7g-a.oregon-postgres.render.com/save_links")
+# DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://save_links_user:9WO8M1bIXq1nd4SSzW3uyTeaFzjmBC8M@dpg-curg0123esus73dnsv7g-a.oregon-postgres.render.com/save_links")
 
-def store_rss_links(country, category, title, link):
-    """Insert RSS news links into the database."""
-    try:
-        conn = psycopg2.connect(DATABASE_URL)
-        cursor = conn.cursor()
-        cursor.execute(
-            "INSERT INTO rss_links (country, category, title, link) VALUES (%s, %s, %s, %s)",
-            (country, category, title, link)
+# def store_rss_links(country, category, title, link):
+#     """Insert RSS news links into the database."""
+#     try:
+#         conn = psycopg2.connect(DATABASE_URL)
+#         cursor = conn.cursor()
+#         cursor.execute(
+#             "INSERT INTO rss_links (country, category, title, link) VALUES (%s, %s, %s, %s)",
+#             (country, category, title, link)
 
             
-        )
-        conn.commit()
-        cursor.close()
-        conn.close()
-    except Exception as e:
-        print(f"Error inserting data: {e}")
+#         )
+#         conn.commit()
+#         cursor.close()
+#         conn.close()
+#     except Exception as e:
+#         print(f"Error inserting data: {e}")
 
-countries = {
-    "United States": "US",
-    "United Kingdom": "GB",
-    "Australia": "AU",
-    "New Zealand": "NZ",
-    "Canada": "CA",
-    "Pakistan": "PK",
-}
+# countries = {
+#     "United States": "US",
+#     "United Kingdom": "GB",
+#     "Australia": "AU",
+#     "New Zealand": "NZ",
+#     "Canada": "CA",
+#     "Pakistan": "PK",
+# }
 
-categories = {
-    "World": "WORLD",
-    "Nation": "NATION",
-    "Business": "BUSINESS",
-    "Technology": "TECHNOLOGY",
-    "Entertainment": "ENTERTAINMENT",
-    "Sports": "SPORTS",
-    "Science": "SCIENCE",
-    "Health": "HEALTH",
-}
+# categories = {
+#     "World": "WORLD",
+#     "Nation": "NATION",
+#     "Business": "BUSINESS",
+#     "Technology": "TECHNOLOGY",
+#     "Entertainment": "ENTERTAINMENT",
+#     "Sports": "SPORTS",
+#     "Science": "SCIENCE",
+#     "Health": "HEALTH",
+# }
 
-for country_name, country_code in countries.items():
-    google_news = GNews(language="en", country=country_code, max_results=5)
+# for country_name, country_code in countries.items():
+#     google_news = GNews(language="en", country=country_code, max_results=5)
 
-    for category_name, category_value in categories.items():
-        category_news = google_news.get_news_by_topic(category_value)
+#     for category_name, category_value in categories.items():
+#         category_news = google_news.get_news_by_topic(category_value)
 
-        if not category_news:
-            continue
+#         if not category_news:
+#             continue
 
-        for news in category_news:
-            store_rss_links(country_name, category_name, news['title'], news['url'])
+#         for news in category_news:
+#             store_rss_links(country_name, category_name, news['title'], news['url'])
 
 
 
