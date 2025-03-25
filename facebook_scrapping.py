@@ -84,7 +84,7 @@ def normalize_url(url):
 def get_facebook_posts(page_name, url):
     options = Options()
     options.add_argument("--headless")
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=insta_options)
     driver.get(url)
     time.sleep(5)
     soup = BeautifulSoup(driver.page_source, "html.parser")
