@@ -25,10 +25,10 @@ cloudinary.config(
 )
 
 # Selenium WebDriver Setup (Headless Mode)
-options = Options()
-options.add_argument("--headless")
-options.add_argument("--disable-gpu")
-options.add_argument("--window-size=1920,1080")
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--window-size=1920,1080")
 
 def create_table():
     """Create fb_links table if it doesn't exist."""
@@ -57,7 +57,7 @@ def get_facebook_links():
 
 def start_driver():
     """Start and return a fresh Selenium WebDriver instance."""
-    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
 def upload_to_cloudinary(image_url):
     """Upload the extracted image URL to Cloudinary and return the new URL."""
