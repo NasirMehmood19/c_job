@@ -17,12 +17,12 @@ DATABASE_URL = "postgresql://instaxrss_user:QGBb5ALqiBraZtjt1c1zoifa4Kf4G1Tu@dpg
 # --- Instagram Scraper (Headless) ---
 
 # Configure Selenium WebDriver options for Instagram (headless mode)
-insta_options = Options()
-insta_options.add_argument("--headless=new")  # No browser window appears
-insta_options.add_argument("--disable-gpu")
-insta_options.add_argument("--window-size=375,812")
-insta_options.add_argument("--disable-blink-features=AutomationControlled")
-insta_options.add_argument(
+chrome_options = Options()
+chrome_options.add_argument("--headless=new")  # No browser window appears
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--window-size=375,812")
+chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+chrome_options.add_argument(
     "user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 15_5 like Mac OS X) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Mobile Safari/537.36"
 )
@@ -84,7 +84,7 @@ def normalize_url(url):
 def get_facebook_posts(page_name, url):
     options = Options()
     options.add_argument("--headless")
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=insta_options)
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     driver.get(url)
     time.sleep(5)
     soup = BeautifulSoup(driver.page_source, "html.parser")
