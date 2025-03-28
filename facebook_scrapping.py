@@ -29,7 +29,7 @@ options.add_argument(
 )
 
 chrome_bin = os.getenv("CHROME_BIN", "/usr/bin/chromium-browser")  # Default to Chromium
-chrome_options.binary_location = chrome_bin
+options.binary_location = chrome_bin
 
 # Detect Chromedriver
 chromedriver_path = os.getenv("CHROMEDRIVER_BIN", "/usr/bin/chromedriver")
