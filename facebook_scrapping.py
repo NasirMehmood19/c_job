@@ -10,6 +10,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 from datetime import datetime
+import os
 
 # PostgreSQL Connection URL (Render external DB)
 DATABASE_URL = "postgresql://instaxrss_user:QGBb5ALqiBraZtjt1c1zoifa4Kf4G1Tu@dpg-cv7sqcqj1k6c739htp00-a.oregon-postgres.render.com/instaxrss"
@@ -17,12 +18,12 @@ DATABASE_URL = "postgresql://instaxrss_user:QGBb5ALqiBraZtjt1c1zoifa4Kf4G1Tu@dpg
 # --- Instagram Scraper (Headless) ---
 
 # Configure Selenium WebDriver options for Instagram (headless mode)
-chrome_options = Options()
-chrome_options.add_argument("--headless=new")  # No browser window appears
-chrome_options.add_argument("--disable-gpu")
-chrome_options.add_argument("--window-size=375,812")
-chrome_options.add_argument("--disable-blink-features=AutomationControlled")
-chrome_options.add_argument(
+options = Options()
+options.add_argument("--headless=new")  # No browser window appears
+options.add_argument("--disable-gpu")
+options.add_argument("--window-size=375,812")
+options.add_argument("--disable-blink-features=AutomationControlled")
+options.add_argument(
     "user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 15_5 like Mac OS X) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Mobile Safari/537.36"
 )
@@ -91,7 +92,7 @@ def normalize_url(url):
 def get_facebook_posts(page_name, url):
     options = Options()
     options.add_argument("--headless")
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     driver.get(url)
     time.sleep(5)
     soup = BeautifulSoup(driver.page_source, "html.parser")
