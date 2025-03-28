@@ -20,6 +20,18 @@ cloudinary.config(
     api_secret="Ow7AilWBHGJnkotnC_YVR6xVa6M"
 )
 
+# # --- Selenium WebDriver Setup ---
+# options = Options()
+# options.add_argument("--headless=new")
+# options.add_argument("--disable-gpu")
+# options.add_argument("--window-size=375,812")
+# options.add_argument("--disable-blink-features=AutomationControlled")
+# options.add_argument(
+#     "user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 15_5 like Mac OS X) "
+#     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Mobile Safari/537.36"
+# )
+
+
 # --- Selenium WebDriver Setup ---
 options = Options()
 options.add_argument("--headless=new")
@@ -30,6 +42,17 @@ options.add_argument(
     "user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 15_5 like Mac OS X) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Mobile Safari/537.36"
 )
+
+# Explicitly set Chrome binary location
+chrome_bin = os.getenv("CHROME_BIN", "/usr/bin/google-chrome-stable")
+options.binary_location = chrome_bin
+
+# Explicitly set Chromedriver path
+CHROMEDRIVER_PATH = os.getenv("CHROMEDRIVER_BIN", "/usr/bin/chromedriver")
+
+# Initialize WebDriver
+driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, options=options)
+
 
 # --- Instagram Pages ---
 INSTAGRAM_PAGES = {
