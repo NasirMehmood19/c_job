@@ -21,12 +21,12 @@ cloudinary.config(
 )
 
 # --- Selenium WebDriver Setup ---
-chrome_options = Options()
-chrome_options.add_argument("--headless=new")
-chrome_options.add_argument("--disable-gpu")
-chrome_options.add_argument("--window-size=375,812")
-chrome_options.add_argument("--disable-blink-features=AutomationControlled")
-chrome_options.add_argument(
+options = Options()
+options.add_argument("--headless=new")
+options.add_argument("--disable-gpu")
+options.add_argument("--window-size=375,812")
+options.add_argument("--disable-blink-features=AutomationControlled")
+options.add_argument(
     "user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 15_5 like Mac OS X) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Mobile Safari/537.36"
 )
@@ -94,7 +94,7 @@ def load_cookies(driver, file_path):
 
 # --- Extract Latest Post Data ---
 def get_latest_instagram_post(page_url):
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(options=options)
     driver.get("https://www.instagram.com/")
     time.sleep(5)
     load_cookies(driver, "instagram_cookies.pkl")
