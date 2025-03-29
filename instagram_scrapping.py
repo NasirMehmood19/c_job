@@ -132,7 +132,7 @@ def load_cookies(driver, file_path):
 
 # --- Extract Latest Post Data ---
 def get_latest_instagram_post(page_url):
-    driver = webdriver.Chrome(options=insta_options)
+    driver = webdriver.Chrome(options=options)
     driver.get("https://www.instagram.com/")
     time.sleep(5)
     load_cookies(driver, "instagram_cookies.pkl")
