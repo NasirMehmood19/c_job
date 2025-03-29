@@ -249,5 +249,6 @@ def scrape_instagram():
     conn.close()
     print("✅ Instagram scraping complete!")
  
- scrape_instagram()
+
+scrape_instagram()
   
