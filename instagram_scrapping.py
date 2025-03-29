@@ -53,6 +53,7 @@ chromedriver_path = os.getenv("CHROMEDRIVER_BIN", "/usr/bin/chromedriver")
 service = Service(chromedriver_path)
 
 
+
 # --- Instagram Pages ---
 INSTAGRAM_PAGES = {
     "Kim Kardashian": "https://www.instagram.com/kimkardashian/",
@@ -71,7 +72,7 @@ INSTAGRAM_PAGES = {
     "Ariana Grande": "https://www.instagram.com/arianagrande/",
     "Billie Eilish": "https://www.instagram.com/billieeilish/",
     "Miley Cyrus": "https://www.instagram.com/mileycyrus/",
-    "Taylor Swift": "https://www.instagram.com/taylorswift/",
+    # "Taylor Swift": "https://www.instagram.com/taylorswift/",
     "Gigi Hadid": "https://www.instagram.com/gigihadid/",
     "Zayn Malik": "https://www.instagram.com/zayn/",
     "Tom Cruise": "https://www.instagram.com/tomcruise/",
@@ -90,7 +91,7 @@ INSTAGRAM_PAGES = {
     "Jennifer Garner": "https://www.instagram.com/jennifer.garner/",
     "Jennifer Aniston": "https://www.instagram.com/jenniferaniston/",
     "Jennifer Lawrence": "https://www.instagram.com/1jnnf/",
-    "Meghan Markle": "https://www.instagram.com/meghan/",
+    # "Meghan Markle": "https://www.instagram.com/meghan/",
     "The Royal Family": "https://www.instagram.com/theroyalfamily/",
     "Cardi B": "https://www.instagram.com/iamcardib/",
     "Soompi": "https://www.instagram.com/soompi/",
@@ -101,7 +102,22 @@ INSTAGRAM_PAGES = {
     "Netflix": "https://www.instagram.com/netflix/",
     "Tom Hanks": "https://www.instagram.com/tomhanks/",
     "Vin Diesel": "https://www.instagram.com/vindiesel/",
-    "Robert Downey Jr.": "https://www.instagram.com/robertdowneyjr/"
+    "Robert Downey Jr.": "https://www.instagram.com/robertdowneyjr/",
+    "Prince and Princess of Wales": "https://www.instagram.com/princeandprincessofwales",
+    "The Royal Family": "https://www.instagram.com/theroyalfamily",
+    "Sarah Ferguson": "https://www.instagram.com/sarahferguson15",
+    "Meghan": "https://www.instagram.com/meghan",
+    "Duke and Duchess of Sussex Daily": "https://www.instagram.com/dukeandduchessofsussexdaily",
+    "Rebecca English": "https://www.instagram.com/byrebeccaenglish",
+    "Taylor Swift": "https://www.instagram.com/taylorswift",
+    # "Selena Gomez": "https://www.instagram.com/selenagomez",
+    "Killatrav": "https://www.instagram.com/killatrav",
+    "Princess Eugenie": "https://www.instagram.com/princesseugenie",
+    "Ryan Reynolds": "https://www.instagram.com/vancityreynolds",
+    # "Kylie Jenner": "https://www.instagram.com/kyliejenner",
+    # "Kendall Jenner": "https://www.instagram.com/kendalljenner",
+    # "Kim Kardashian": "https://www.instagram.com/kimkardashian",
+    "Gigi Hadid": "https://www.instagram.com/gigihadid"
 }
 
 # --- Load Instagram Cookies ---
@@ -116,7 +132,7 @@ def load_cookies(driver, file_path):
 
 # --- Extract Latest Post Data ---
 def get_latest_instagram_post(page_url):
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Chrome(options=insta_options)
     driver.get("https://www.instagram.com/")
     time.sleep(5)
     load_cookies(driver, "instagram_cookies.pkl")
@@ -226,11 +242,12 @@ def scrape_instagram():
                 INSERT INTO instagram_post (page_name, link, post_image, caption, timestamp)
                 VALUES (%s, %s, %s, %s, %s)
                 ON CONFLICT (link) 
-                DO UPDATE SET post_image = EXCLUDED.post_image, caption = EXCLUDED.caption, timestamp = EXCLUDED.timestamp
+                DO UPDATE SET page_name=EXCLUDED.page_name, post_image = EXCLUDED.post_image, caption = EXCLUDED.caption, timestamp = EXCLUDED.timestamp
             """, (page_name, post["url"], final_image_url, post["caption"] or "No caption", post["timestamp"]))
             conn.commit()
     cursor.close()
     conn.close()
     print("✅ Instagram scraping complete!")
-
-scrape_instagram()
+ 
+ scrape_instagram()
+  
