@@ -111,7 +111,7 @@ def store_facebook_posts(posts):
     cursor = conn.cursor()
     for post in posts:
         cursor.execute("INSERT INTO facebook_links (page_name, link) VALUES (%s, %s) " 
-                       "ON CONFLICT (link) DO NOTHING",
+                       "ON CONFLICT (page_name) DO UPDATE SET link = EXCLUDED.link",
                        (post["page_name"], post["link"]))
     conn.commit()
     cursor.close()
