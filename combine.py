@@ -175,7 +175,7 @@ import os
 from gnews import GNews
 
 # PostgreSQL Connection URL
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://instaxrss_user:QGBb5ALqiBraZtjt1c1zoifa4Kf4G1Tu@dpg-cv7sqcqj1k6c739htp00-a.oregon-postgres.render.com/instaxrss")
+DATABASE_URL = "postgresql://instaxrss_user:QGBb5ALqiBraZtjt1c1zoifa4Kf4G1Tu@dpg-cv7sqcqj1k6c739htp00-a.oregon-postgres.render.com/instaxrss"
 
 # Create the table if it doesn't exist
 def create_table():
