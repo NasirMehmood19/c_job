@@ -72,7 +72,7 @@ facebook_pages = [
     # {"name": "Jennifer Lawrence", "url": "https://www.facebook.com/JenniferLawrence/"},
     # {"name": "The Royal Family", "url": "https://www.facebook.com/TheBritishMonarchy/"},
     # {"name": "Cardi B", "url": "https://www.facebook.com/cardib/"},
-    # {"name": "Soompi", "url": "https://www.facebook.com/Soompi/"},
+    {"name": "Soompi", "url": "https://www.facebook.com/Soompi/"},
     # {"name": "Katy Perry", "url": "https://www.facebook.com/KatyPerry/"},
     # {"name": "Paris Hilton", "url": "https://www.facebook.com/ParisHilton/"},
     # {"name": "Zendaya", "url": "https://www.facebook.com/Zendaya/"},
@@ -81,7 +81,7 @@ facebook_pages = [
     # {"name": "Tom Hanks", "url": "https://www.facebook.com/TomHanks/"},
     # {"name": "Vin Diesel", "url": "https://www.facebook.com/VinDiesel/"},
     # {"name": "Robert Downey Jr.", "url": "https://www.facebook.com/RobertDowneyJr/"}
-    {"name": "Dailymail", "url": "https://www.facebook.com/DailyMail/"}
+    # {"name": "Dailymail", "url": "https://www.facebook.com/DailyMail/"}
 ]
 
 
