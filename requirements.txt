@@ -9,5 +9,3 @@ requests
 gnews
 Cloudinary
 pandas
-tabulate
-re
