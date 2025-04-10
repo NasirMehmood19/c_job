@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 import re
 
 # PostgreSQL Database Credentials
-DB_URL = "postgresql://instaxrss_user:QGBb5ALqiBraZtjt1c1zoifa4Kf4G1Tu@dpg-cv7sqcqj1k6c739htp00-a.oregon-postgres.render.com/instaxrss"
+DB_URL = "postgresql://neondb_owner:npg_7SjyKhDinEv8@ep-young-term-a5zyo5in-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require"
 
 # Set up Selenium WebDriver
 options = Options()
