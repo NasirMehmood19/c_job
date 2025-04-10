@@ -141,6 +141,6 @@ jobs:
           # python combine_1.py
           # python instagram_scrapping.py
           # python facebook_scrapping.py
-          trends.py
+          python trends.py
           
         
