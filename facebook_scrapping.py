@@ -123,7 +123,7 @@ def fetch_all_posts():
         posts = get_facebook_posts(page["name"], page["url"])
         if posts:
             store_facebook_posts(posts)
-    print(f"✅ Stored/Updated the latest post in the database.")
+    print(f"✅ Stored/Updated the latest facebook post in the database.")
 
 if __name__ == "__main__":
     # while True:
