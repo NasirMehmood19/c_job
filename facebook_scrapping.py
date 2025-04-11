@@ -81,7 +81,6 @@ facebook_pages = [
     {"name": "Tom Hanks", "url": "https://www.facebook.com/TomHanks/"},
     {"name": "Vin Diesel", "url": "https://www.facebook.com/VinDiesel/"},
     {"name": "Robert Downey Jr.", "url": "https://www.facebook.com/RobertDowneyJr/"}
-    {"name": "Dailymail", "url": "https://www.facebook.com/DailyMail/"}
 ]
 
 
