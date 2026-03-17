@@ -46,48 +46,48 @@
 #           python get_timestamp_from_db.py
 
 
-name: Run Scraper Every 2 Hours
+# name: Run Scraper Every 2 Hours
 
-on:
-  schedule:
-    - cron: "0 */2 * * *"  # Runs every 2 hours
-  workflow_dispatch:  # Allows manual run
+# on:
+#   schedule:
+#     - cron: "0 */2 * * *"  # Runs every 2 hours
+#   workflow_dispatch:  # Allows manual run
 
-jobs:
-  run-scraper:
-    runs-on: ubuntu-latest
+# jobs:
+#   run-scraper:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.9"
+#       - name: Set up Python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: "3.9"
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-
-      - name: Install Chrome & Chromedriver
-        run: |
-          sudo apt update
-          sudo apt install -y chromium-browser chromium-chromedriver
-          echo "CHROME_BIN=/usr/bin/chromium-browser" >> $GITHUB_ENV
-          echo "CHROMEDRIVER_BIN=/usr/bin/chromedriver" >> $GITHUB_ENV
+#       - name: Install dependencies
+#         run: pip install -r requirements.txt
 
 
-      - name: Decode and Load Cookies
-        env:
-          COOKIES_BASE64: ${{ secrets.INSTA_COOKIES }}
-        run: echo "$COOKIES_BASE64" | base64 --decode > instagram_cookies.pkl
+#       - name: Install Chrome & Chromedriver
+#         run: |
+#           sudo apt update
+#           sudo apt install -y chromium-browser chromium-chromedriver
+#           echo "CHROME_BIN=/usr/bin/chromium-browser" >> $GITHUB_ENV
+#           echo "CHROMEDRIVER_BIN=/usr/bin/chromedriver" >> $GITHUB_ENV
 
-      - name: Run Scraper
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run:
-          python instagram_scrapping.py
+
+#       - name: Decode and Load Cookies
+#         env:
+#           COOKIES_BASE64: ${{ secrets.INSTA_COOKIES }}
+#         run: echo "$COOKIES_BASE64" | base64 --decode > instagram_cookies.pkl
+
+#       - name: Run Scraper
+#         env:
+#           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+#         run:
+#           python instagram_scrapping.py
 
 
 
